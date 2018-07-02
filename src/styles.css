@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Rochester');
+@import url('https://fonts.googleapis.com/css?family=Handlee');
+
+.title {
+  font-family: 'Rochester', cursive;
+  color: #ffe6e6;
+}
+
+.background-global {
+  background: rgba(254, 240, 240, .25);
+}
+
+* {
+  font-family: 'Handlee', cursive;
+  color: white;
+}

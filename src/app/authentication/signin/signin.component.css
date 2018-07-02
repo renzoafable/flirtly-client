@@ -1,0 +1,17 @@
+.btn-outline-signin {
+  color: #ffe6e6;
+  background-color: transparent;
+  background-image: none;
+  border-color: #ffe6e6;
+}
+
+.btn-outline-signin:hover {
+  color: #902D41;
+  background-color: #ffe6e6;
+  border-color: #ffe6e6;
+}
+
+input {
+  text-align: center;
+  color: black;
+}

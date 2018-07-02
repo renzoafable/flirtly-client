@@ -1,0 +1,14 @@
+.panel {
+  background-color: rgba(254, 240, 240, .25);
+  margin-bottom: .5em;
+}
+
+.panel-header {
+  margin-top: .2em;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.stats {
+  margin: 0 auto;
+}
