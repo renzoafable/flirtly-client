@@ -23,7 +23,6 @@ export class NavbarComponent implements OnInit {
       result =>{
         this.signoutService.announceSignOut();
         console.log(result);
-        this.cookieService.deleteAll();
       },
       err => {
         console.log(err.error);

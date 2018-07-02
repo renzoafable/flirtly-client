@@ -19,6 +19,6 @@ export class SignoutService {
   }
 
   signOut() {
-    return this.httpClient.post<any>(signOut, {});
+    return this.httpClient.post<any>(signOut, {}, { withCredentials: true });
   }
 }

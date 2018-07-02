@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     });
 
     signoutService.isSignedOut$.subscribe(result => {
-      this.setSession(result);
+      this.setSession(false);
     });
   }
 
@@ -38,8 +38,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.sessionService.getSession().subscribe(session => {
-      console.log(session);
+      session ? this.isLoggedIn = true : this.isLoggedIn = false;
     });
-    console.log(this.isLoggedIn);
   }
 }

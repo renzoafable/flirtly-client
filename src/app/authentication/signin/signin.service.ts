@@ -25,6 +25,6 @@ export class SigninService {
   signIn({username, password}) {
     const body = { username, password };
 
-    return this.http.post<SignupFormResponse>(signIn, body);
+    return this.http.post<SignupFormResponse>(signIn, body, {withCredentials: true});
   }
 }
