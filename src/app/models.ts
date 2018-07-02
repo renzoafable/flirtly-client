@@ -1,4 +1,10 @@
 export interface SessionResponse {
+  status: number,
+  message: string,
+  session: Object
+}
+
+export interface User {
   userID: number;
   username: string;
   firstName: string;

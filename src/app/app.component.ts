@@ -14,7 +14,7 @@ import { SessionService } from './authentication/session/session.service';
   ]
 })
 export class AppComponent implements OnInit {
-  isLoggedIn: Boolean;
+  isLoggedIn: Boolean = false;
   title = 'app';
 
   constructor(
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     });
 
     signoutService.isSignedOut$.subscribe(result => {
-      this.setSession(false);
+      this.setSession(result);
     });
   }
 
@@ -36,9 +36,11 @@ export class AppComponent implements OnInit {
     this.isLoggedIn = result;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.sessionService.getSession().subscribe(session => {
-      session ? this.isLoggedIn = true : this.isLoggedIn = false;
+      if (session.session) {
+        this.isLoggedIn = true;
+      }
     });
   }
 }

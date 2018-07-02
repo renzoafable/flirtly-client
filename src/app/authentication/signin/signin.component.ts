@@ -28,10 +28,9 @@ export class SigninComponent implements OnInit {
     this.signinService.signIn(this.body)
     .subscribe(
       result => {
+        this.cookieService.set('flirtly', 'blabla');
         this.validCredentials = true;
         this.signinService.announceSignIn(this.validCredentials);
-        console.log(result);
-        // this.cookieService.set('flirtly', JSON.stringify(result));
       },
       err => {
         this.validCredentials = false;
