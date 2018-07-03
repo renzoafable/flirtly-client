@@ -10,7 +10,8 @@ import { SessionService } from './authentication/session/session.service';
   styleUrls: ['./app.component.css'],
   providers: [
     SigninService,
-    SignoutService
+    SignoutService,
+    CookieService
   ]
 })
 export class AppComponent implements OnInit {
@@ -18,10 +19,10 @@ export class AppComponent implements OnInit {
   title = 'app';
 
   constructor(
-    private cookieService: CookieService,
     private signinService: SigninService,
     private signoutService: SignoutService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private cookieService: CookieService,
   ) {
     signinService.isSignedIn$.subscribe(result => {
       this.setSession(result);
@@ -39,6 +40,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.sessionService.getSession().subscribe(session => {
       if (session.session) {
+        this.cookieService.set('user', JSON.stringify(session.session), 24);
         this.isLoggedIn = true;
       }
     });

@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SigninForm } from '../../models';
 import { SigninService } from './signin.service';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-signin',
@@ -18,7 +17,6 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private signinService: SigninService,
-    private cookieService: CookieService
   ) { }
 
   ngOnInit() {
@@ -28,7 +26,6 @@ export class SigninComponent implements OnInit {
     this.signinService.signIn(this.body)
     .subscribe(
       result => {
-        this.cookieService.set('flirtly', 'blabla');
         this.validCredentials = true;
         this.signinService.announceSignIn(this.validCredentials);
       },

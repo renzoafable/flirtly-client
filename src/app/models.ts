@@ -40,3 +40,14 @@ export interface SignupFormResponse {
   message: string;
   user: Object;
 }
+
+export interface Interest {
+  interestID: number;
+  interest: string;
+}
+
+export interface InterestResponse {
+  status: number;
+  message: string;
+  data: Interest[];
+}

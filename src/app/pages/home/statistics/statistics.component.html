@@ -1,6 +1,12 @@
-<div class="panel">
-  <img src="../../../../assets/user.ico" class="img-circle" height="100" width="100" alt="Avatar">
-  <h3 class="panel-header">lbafable</h3>
-  <p class="stats">Lorenz Matthew Afable</p>
-  <p class="stats">Borongan City, Eastern Samar</p>
+<div class="media">
+  <div class="media-left media-middle">
+    <img src="../../../../assets/user.ico" class="img-circle" height="100" width="100" alt="Avatar">
+  </div>
+  <div class="media-body">
+    <h3 class="media-heading">{{user.firstName}} {{user.middleName}} {{user.lastName}}</h3>
+    <p class="stats">@{{user.username}}</p>
+    <p class="stats">{{user.emailAddress}}</p>
+    <p class="stats">{{user.contactNumber}}</p>
+    <p class="stats">{{user.city}}, {{user.province}}</p>
+  </div>
 </div>

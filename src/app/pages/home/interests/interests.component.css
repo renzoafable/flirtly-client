@@ -1,10 +1,5 @@
 .panel {
   background-color: rgba(254, 240, 240, .25);
   margin-bottom: .5em;
-}
-
-.interests-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 0;
 }
