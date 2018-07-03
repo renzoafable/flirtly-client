@@ -1,0 +1,145 @@
+<div class="container-fluid signup">
+  <div class="container">
+    <div class="panel-heading">
+      <h1 class="title">Sign Up</h1>
+      <h5>Flirt freely, live freely</h5>
+    </div>
+    <form action="" #signupForm="ngForm" (ngSubmit)="signup(); signupForm.reset()">
+      <div class="row">
+        <div class="col-sm-4">
+          <input  
+          class="form-control" 
+          id="firstName" 
+          type="text" 
+          name="firstName" 
+          placeholder="First name"
+          required
+          [(ngModel)]="body.firstName"
+          >
+        </div>
+        <div class="col-sm-4">
+          <input  
+          class="form-control" 
+          id="middleName" 
+          type="text" 
+          name="middleName" 
+          placeholder="Middle name"
+          [(ngModel)]="body.middleName"
+          >
+        </div>
+        <div class="col-sm-4">
+          <input  
+          class="form-control" 
+          id="lastName" 
+          type="text" 
+          name="lastName" 
+          placeholder="Last name"
+          required
+          [(ngModel)]="body.lastName"
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <input  
+          class="form-control" 
+          id="username@signup" 
+          type="text" 
+          name="username" 
+          placeholder="Username"
+          required
+          [(ngModel)]="body.username"
+        >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <input  
+          class="form-control" 
+          id="contactNumber" 
+          type="text" 
+          name="contactNumber" 
+          placeholder="Contact number"
+          required
+          [(ngModel)]="body.contactNumber"
+        >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <input  
+          class="form-control" 
+          id="emailAddress" 
+          type="text" 
+          name="emailAddress" 
+          placeholder="Email address"
+          required
+          [(ngModel)]="body.emailAddress"
+        >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <input  
+          class="form-control" 
+          id="password@signup" 
+          type="password" 
+          name="password" 
+          placeholder="Password"
+          required
+          [(ngModel)]="body.password"
+        >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <select 
+            class="form-control" 
+            id="sex"
+            name="sex"
+            required
+            [(ngModel)]="body.sex" 
+          >
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <input  
+          class="form-control" 
+          id="city" 
+          type="text" 
+          name="city" 
+          placeholder="City"
+          required
+          [(ngModel)]="body.city"
+          >
+        </div>
+        <div class="col-sm-6">
+          <input  
+          class="form-control" 
+          id="province" 
+          type="text" 
+          name="province" 
+          placeholder="Province"
+          required
+          [(ngModel)]="body.province"
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <button 
+          type="submit" 
+          class="btn btn-outline-signup"
+          [disabled]="!signupForm.form.valid"
+          >
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

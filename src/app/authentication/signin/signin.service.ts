@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SignupFormResponse, SessionResponse } from '../../models';
+import { SessionResponse } from '../../models';
 import { signIn } from '../../api/auth';
 import { Subject } from 'rxjs';
 

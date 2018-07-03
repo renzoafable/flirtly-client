@@ -1,0 +1,48 @@
+.container-fluid {
+  height: 80%;
+}
+
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 35%;
+}
+
+.panel-heading {
+  padding: 0 0 0 0;
+}
+
+.col-sm-4, .col-sm-12, .col-sm-6 {
+  padding: .40em .40em;
+}
+
+.btn {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-outline-signup {
+  color: #ffe6e6;
+  background-color: transparent;
+  background-image: none;
+  border-color: #ffe6e6;
+}
+
+.btn-outline-signup:hover {
+  color: #902D41;
+  background-color: #ffe6e6;
+  border-color: #ffe6e6;
+}
+
+input {
+  font-size: 15px;
+}
+
+select {
+  font-size: 15px;
+  border-radius: 0;
+}

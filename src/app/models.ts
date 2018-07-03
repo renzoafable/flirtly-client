@@ -36,14 +36,7 @@ export interface SignupForm {
 }
 
 export interface SignupFormResponse {
-  userID: string;
-  username: string;
-  firstName: string;
-  middleName: string;
-  lastName: string;
-  contactNumber: string;
-  emailAddress: string;
-  sex: string;
-  city: string;
-  province: string;
+  status: number;
+  message: string;
+  user: Object;
 }
