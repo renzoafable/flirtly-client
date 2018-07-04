@@ -3,3 +3,19 @@
   margin-bottom: .5em;
   border-radius: 0;
 }
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: .75em .5em;
+}
+
+.panel-header h4 {
+  margin: 0 0;
+  padding: 0 0;
+}
+
+span {
+  margin: auto 0;
+}

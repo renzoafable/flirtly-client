@@ -1,7 +1,12 @@
 img {
   margin: auto;
+  width: 69%;
 }
 
 .carousel {
   background-color: rgba(254, 240, 240, .25);
+}
+
+.carousel-control {
+  filter: alpha(opacity=0);
 }

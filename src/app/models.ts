@@ -51,3 +51,9 @@ export interface InterestResponse {
   message: string;
   data: Interest[];
 }
+
+export interface UserResponse {
+  status: number;
+  message: string;
+  users: any[];
+}

@@ -17,7 +17,7 @@ export class InterestComponent implements OnInit {
     'label label-info',
     'label label-warning',
     'label label-danger'
-  ]
+  ];
 
   constructor() { }
 

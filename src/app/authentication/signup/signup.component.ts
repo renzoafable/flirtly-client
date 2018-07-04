@@ -34,7 +34,7 @@ export class SignupComponent implements OnInit {
         console.log(result);
       },
       err => {
-
+        console.log(err.error);
       }
     )
   }

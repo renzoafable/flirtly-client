@@ -9,6 +9,7 @@ import { Interest } from '../../../models';
 })
 export class InterestsComponent implements OnInit {
   interests: Interest[];
+  interestsToBeAdded: string;
 
   constructor(
     private homeService: HomeService
@@ -25,4 +26,19 @@ export class InterestsComponent implements OnInit {
     );
   }
 
+  setInterests(interests) {
+    const newInterests = [...this.interests, ...interests];
+    this.interests = newInterests;
+  }
+
+  addInterests() {
+    this.homeService.addInterest(this.interestsToBeAdded).subscribe(
+      result => {
+        this.setInterests(result.data);
+      },
+      err => {
+
+      }
+    )
+  }
 }

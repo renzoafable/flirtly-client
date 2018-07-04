@@ -1,5 +1,36 @@
 <div class="text-center panel">
-  <h3 class="panel-header">Interests</h3>
+  <div class="panel-header">
+    <h4>Interests</h4>
+    <span 
+      class="glyphicon glyphicon-plus" 
+      role="button" 
+      data-toggle="collapse" 
+      data-target="#addInterest"></span>
+  </div>
+  <div id="addInterest" class="collapse">
+    <form #addInterestForm="ngForm">
+      <div class="input-group" style="width: 90%; margin: auto">
+        <input 
+          type="text"
+          name="interestsString"
+          class="form-control inputsm" 
+          placeholder="e.g. Coding, Eating" 
+          [(ngModel)]="interestsToBeAdded"
+          required
+        >
+        <div class="input-group-btn">
+          <button 
+            class="btn btn-primary" 
+            type="submit" 
+            (click)="addInterests(); addInterestForm.reset();"
+            [disabled]="!addInterestForm.form.valid"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
   <div class="interests">
     <app-interest *ngFor="let interest of interests; let i=index" [interest]="interest" [iter]="i"></app-interest>
   </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SignoutService } from '../../authentication/signout/signout.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +12,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private signoutService: SignoutService,
+    private cookieService: CookieService,
   ) { }
 
   ngOnInit() { }
@@ -20,6 +22,7 @@ export class NavbarComponent implements OnInit {
     .subscribe(
       result =>{
         this.signoutService.announceSignOut();
+        this.cookieService.deleteAll();
         console.log(result);
       },
       err => {
