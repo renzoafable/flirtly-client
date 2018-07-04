@@ -6,11 +6,13 @@
         <h4>{{user.firstName}} {{user.middleName}} {{user.lastName}}</h4>
         <p>@{{user.username}}</p>
         <p>{{user.city}}, {{user.province}}</p>
-        <button [innerHtml]="setCarouselButtonHtml(user.confirmed)" class="btn btn-danger" (click)="sendRequest(user.userID)">
-        </button>
-        <button class="btn btn-primary">
-          Add to favorites
-        </button>
+        <div class="btn-group">
+          <button [innerHtml]="setCarouselButtonHtml(user.confirmed)" class=" btn btn-request" (click)="sendRequest(user.userID)">
+          </button>
+          <button class="btn btn-favorite">
+            Add to favorites
+          </button>
+        </div>
       </div>
     </div>
   </div>

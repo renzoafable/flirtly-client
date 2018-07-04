@@ -10,3 +10,40 @@ img {
 .carousel-control {
   filter: alpha(opacity=0);
 }
+
+.btn {
+  border-radius: 0;
+}
+
+.btn-request{
+  background: #ff4d4d;
+  box-shadow: 0 0 1px #ccc;
+  -webkit-transition: all 0.2s ease-in-out;
+  color: #fff;
+}
+.btn-request:hover{
+  -webkit-transform: scale(1.1);
+  background: white;
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+}
+
+.btn-favorite{
+  background: #4d4dff;
+  box-shadow: 0 0 1px #ccc;
+  -webkit-transition: all 0.2s ease-in-out;
+  color: #fff;
+}
+.btn-favorite:hover{
+  -webkit-transform: scale(1.1);
+  background: white;
+  color: #4d4dff;
+  border: 1px solid #4d4dff;
+}
+
+.btn-group {
+  margin: auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+}
