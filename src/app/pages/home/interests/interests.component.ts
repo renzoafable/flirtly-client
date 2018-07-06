@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home.service';
 import { Interest } from '../../../models';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-interests',
@@ -8,17 +9,34 @@ import { Interest } from '../../../models';
   styleUrls: ['./interests.component.css'],
 })
 export class InterestsComponent implements OnInit {
-  interests: Interest[];
+  isGettingInterests: boolean;
+  interests: Interest[] = [];
   interestsToBeAdded: string;
+  interestDeletedSubscription: Subscription;
 
   constructor(
     private homeService: HomeService
-  ) { }
+  ) { 
+    this.interestDeletedSubscription = this.homeService.interesDeleted$.subscribe(
+      interestDeleted => {
+        this.homeService.getUserInterests().subscribe(
+          result => {
+            this.interests = result.data;
+          },
+          err => {
+            console.log(err.error);
+          }
+        )
+      }
+    )
+  }
 
   ngOnInit() {
+    this.isGettingInterests = true;
     this.homeService.getUserInterests().subscribe(
       result => {
         this.interests = result.data;
+        this.isGettingInterests = false;
       },
       err => {
         console.log(err.error);
@@ -37,7 +55,7 @@ export class InterestsComponent implements OnInit {
         this.setInterests(result.data);
       },
       err => {
-
+        console.log(err.error);
       }
     )
   }

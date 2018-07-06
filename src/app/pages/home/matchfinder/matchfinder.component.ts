@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { User } from '../../../models';
 import { HomeService } from '../home.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-matchfinder',
@@ -10,16 +11,65 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./matchfinder.component.css']
 })
 export class MatchfinderComponent implements OnInit {
-  users: User[];
+  isGettingUsers: boolean;
+  users: User[] = [];
+  userCookie = null;
+  requestApprovedSubscription: Subscription;
+  requestCancelledSubscription: Subscription;
+  pendingCancelledSubscription: Subscription;
 
   constructor(
-    private homeService: HomeService
-  ) { }
+    private homeService: HomeService,
+    private cookieService: CookieService,
+    private router: Router
+  ) { 
+    this.requestCancelledSubscription = this.homeService.requestCancelled$.subscribe(
+      requestCanlled => {
+        this.homeService.getUsers().subscribe(
+          result => {
+            this.users = result.users[0].filter(user => (user.confirmed === null || user.confirmed === 0) );
+          },
+          err => {
+            console.log(err.error);
+          }
+        )
+      }
+    );
+
+    this.pendingCancelledSubscription = this.homeService.pendingCancelled$.subscribe(
+      pendingCancelled => {
+        this.homeService.getUsers().subscribe(
+          result => {
+            this.users = result.users[0].filter(user => (user.confirmed === null || user.confirmed === 0) );
+          },
+          err => {
+            console.log(err.error);
+          }
+        )
+      }
+    );
+
+    this.requestApprovedSubscription = this.homeService.requestApproved$.subscribe(
+      requestApproved => {
+        this.homeService.getUsers().subscribe(
+          result => {
+            this.users = result.users[0].filter(user => (user.confirmed === null || user.confirmed === 0) );
+          },
+          err => {
+            console.log(err.error);
+          }
+        )
+      }
+    );
+  }
 
   ngOnInit() {
+    this.userCookie = JSON.parse(this.cookieService.get('user'));
+    this.isGettingUsers = true;
     this.homeService.getUsers().subscribe(
       result => {
-        this.users = result.users[0];
+        this.users = result.users[0].filter(user => (user.confirmed === null || user.confirmed === 0));
+        this.isGettingUsers = false;
       },
       err => {
         console.log(err.error);
@@ -35,9 +85,7 @@ export class MatchfinderComponent implements OnInit {
     switch(confirmed) {
       case 1:
         return 'Remove connection';
-      case 0:
-        return 'Cancel request';
-      case null:
+      default:
         return 'Send request';
     }
   }
@@ -45,8 +93,8 @@ export class MatchfinderComponent implements OnInit {
   sendRequest(connectionID: number) {
     this.homeService.sendRequest(connectionID).subscribe(
       result => {
-        this.users = result.users;
-        console.log(this.users);
+        this.users = result.users.filter(user => (user.confirmed === null || user.confirmed === 0));
+        this.homeService.announceRequest();
       },
       err => {
         console.log(err.error);

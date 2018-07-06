@@ -14,7 +14,8 @@ export interface User {
   emailAddress: string;
   sex: string;
   city: string;
-  province: string
+  province: string;
+  confirmed: number;
 }
 
 export interface SigninForm {

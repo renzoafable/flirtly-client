@@ -9,6 +9,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { NavbarComponent } from './global/navbar/navbar.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { HomeModule } from './pages/home/home.module';
+import { MessagesModule } from './pages/messages/messages.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HomeModule } from './pages/home/home.module';
     HttpClientModule,
     AppRoutingModule,
     AuthenticationModule,
-    HomeModule
+    HomeModule,
+    MessagesModule
   ],
   exports: [
     TitleComponent,

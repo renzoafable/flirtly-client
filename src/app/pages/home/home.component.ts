@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [HomeService]
 })
 export class HomeComponent implements OnInit {
-  user;
-
   constructor() { }
 
   ngOnInit() {

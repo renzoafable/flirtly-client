@@ -32,6 +32,10 @@
     </form>
   </div>
   <div class="interests">
+    <div [hidden]="interests.length || isGettingInterests">None</div>
     <app-interest *ngFor="let interest of interests; let i=index" [interest]="interest" [iter]="i"></app-interest>
+  </div>
+  <div *ngIf="isGettingInterests" class="alert alert-primary fade in text-center">
+    <strong><i>Loading...</i></strong>
   </div>
 </div>

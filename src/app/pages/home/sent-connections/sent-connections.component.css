@@ -1,0 +1,57 @@
+.panel {
+  background-color: rgba(254, 240, 240, .25);
+  margin-bottom: .5em;
+  border-radius: 0;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .75em .5em;
+  background-color: rgba(254, 240, 240, .50)
+}
+
+.panel-header h4 {
+  margin: 0 0;
+  padding: 0 0;
+}
+
+.sent {
+  padding: .40em .40em;
+}
+
+img {
+  margin: auto;
+  width: 70%;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.btn-request{
+  background: white;
+  box-shadow: 0 0 1px #ccc;
+  -webkit-transition: all 0.2s ease-in-out;
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+}
+.btn-request:hover{
+  -webkit-transform: scale(1.1);
+  background: #ff4d4d;
+  color: #fff;
+}
+
+.carousel-caption {
+  padding: .30em 0;
+}
+
+.carousel-caption p {
+  margin: 0 0;
+}
+
+.badge {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: .3em .3em;
+}

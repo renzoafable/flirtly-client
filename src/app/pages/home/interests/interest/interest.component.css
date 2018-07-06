@@ -2,3 +2,7 @@ span {
   display: inline-block;
   margin: .25em .25em;
 }
+
+* {
+  font-family: 'Comfortaa', cursive;
+}

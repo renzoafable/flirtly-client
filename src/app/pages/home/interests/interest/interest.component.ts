@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Interest } from '../../../../models';
+import { HomeService } from '../../home.service';
 
 @Component({
   selector: 'app-interest',
@@ -19,8 +20,20 @@ export class InterestComponent implements OnInit {
     'label label-danger'
   ];
 
-  constructor() { }
+  constructor(
+    private homeService: HomeService
+  ) { }
 
   ngOnInit() { }
 
+  deleteInterest(interestID) {
+    this.homeService.deleteInterest(interestID).subscribe(
+      result => {
+        this.homeService.announceDeleteInterest();
+      },
+      err => {
+        console.log(err.error);
+      }
+    )
+  }
 }

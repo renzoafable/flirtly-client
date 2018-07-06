@@ -1,1 +1,1 @@
-<span [class]="styles[iter > 5 ? iter%6 : iter]">{{interest.interest}}</span>
+<span [class]="styles[iter > 5 ? iter%6 : iter]">{{interest.interest}} <span class="glyphicon glyphicon-minus" (click)="deleteInterest(interest.interestID)"></span></span>

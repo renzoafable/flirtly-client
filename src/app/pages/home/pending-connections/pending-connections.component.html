@@ -1,0 +1,37 @@
+<div class="text-center panel">
+    <div class="panel-header">
+      <h4>Pending Requests<span class="badge">{{pending.length}}</span></h4>
+    </div>
+    <div class="sent">
+      <div *ngIf="pending.length" class="carousel slide" id="pending-connections" data-ride="carousel">
+        <div class="carousel-inner">
+          <div *ngFor="let user of pending; let i = index" [class]="setCarouselClass(i)">
+            <img src="../../../../assets/renzo.jpg" alt="user image" class="img-responsive">
+            <div class="carousel-caption background-global">
+              <p>@{{user.userName}}</p>
+              <button class="btn btn-approve" (click)="approveRequest(user.userID)" >
+                Approve
+              </button>
+              <button class="btn btn-cancel" (click)="deleteRequest(user.userID)">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <a href="#pending-connections" class="left carousel-control" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a href="#pending-connections" class="right carousel-control" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div [hidden]="pending.length || isGettingPendingConnections">None</div>
+      <div *ngIf="isGettingPendingConnections" class="alert alert-primary fade in text-center">
+        <strong><i>Loading...</i></strong>
+      </div>
+    </div>
+  </div>
+      

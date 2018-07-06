@@ -8,7 +8,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: .75em .5em;
+  padding: .75em .5em;
+  background-color: rgba(254, 240, 240, .50)
 }
 
 .panel-header h4 {
@@ -18,4 +19,12 @@
 
 span {
   margin: auto 0;
+}
+
+.interests {
+  padding: .40em .40em;
+}
+
+#addInterest {
+  margin: .20em .20em;
 }

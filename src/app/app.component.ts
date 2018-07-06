@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { SigninService } from './authentication/signin/signin.service';
 import { SignoutService } from './authentication/signout/signout.service';
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
     private signoutService: SignoutService,
     private sessionService: SessionService,
     private cookieService: CookieService,
+    private router: Router
   ) {
     signinService.isSignedIn$.subscribe(result => {
       this.setSession(result);
@@ -35,6 +37,7 @@ export class AppComponent implements OnInit {
 
   setSession(result) {
     this.isLoggedIn = result;
+    if (this.isLoggedIn) this.router.navigateByUrl('/home');
   }
 
   ngOnInit(): void {

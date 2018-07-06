@@ -1,4 +1,4 @@
-<div class="carousel slide" id="matchfinder" data-ride="carousel">
+<div  *ngIf="users.length" class="carousel slide" id="matchfinder" data-ride="carousel">
   <div class="carousel-inner">
     <div *ngFor="let user of users; let i = index" [class]="setCarouselClass(i)">
       <img src="../../../../assets/renzo.jpg" alt="user image" class="img-responsive">
@@ -8,9 +8,6 @@
         <p>{{user.city}}, {{user.province}}</p>
         <div class="btn-group">
           <button [innerHtml]="setCarouselButtonHtml(user.confirmed)" class=" btn btn-request" (click)="sendRequest(user.userID)">
-          </button>
-          <button class="btn btn-favorite">
-            Add to favorites
           </button>
         </div>
       </div>
@@ -25,4 +22,12 @@
     <span class="glyphicon glyphicon-chevron-right"></span>
     <span class="sr-only">Next</span>
   </a>
+</div>
+<div [hidden]="users.length || isGettingUsers" class="alert alert-danger alert-dismissible fade in">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Hey, {{userCookie.firstName}}!</strong>
+  There are no more users available to flirt with.
+</div>
+<div *ngIf="isGettingUsers" class="alert alert-primary fade in text-center">
+  <strong><i>Loading...</i></strong>
 </div>
