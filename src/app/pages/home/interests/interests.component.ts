@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./interests.component.css'],
 })
 export class InterestsComponent implements OnInit {
+  addClicked: boolean = false;
   isGettingInterests: boolean;
   interests: Interest[] = [];
   interestsToBeAdded: string;
@@ -44,6 +45,10 @@ export class InterestsComponent implements OnInit {
     );
   }
 
+  toggleIcon() {
+    this.addClicked = !this.addClicked;
+  }
+
   setInterests(interests) {
     const newInterests = [...this.interests, ...interests];
     this.interests = newInterests;
@@ -52,7 +57,14 @@ export class InterestsComponent implements OnInit {
   addInterests() {
     this.homeService.addInterest(this.interestsToBeAdded).subscribe(
       result => {
-        this.setInterests(result.data);
+        this.homeService.getUserInterests().subscribe(
+          result => {
+            this.interests = result.data;
+          },
+          err => {
+            console.log(err.error);
+          }
+        )
       },
       err => {
         console.log(err.error);

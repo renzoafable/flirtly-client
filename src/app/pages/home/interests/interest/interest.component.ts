@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Interest } from '../../../../models';
 import { HomeService } from '../../home.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-interest',
@@ -10,9 +11,9 @@ import { HomeService } from '../../home.service';
 export class InterestComponent implements OnInit {
   @Input() interest;
   @Input() iter;
+  user;
 
   styles = [
-    'label label-default',
     'label label-primary',
     'label label-success',
     'label label-info',
@@ -21,10 +22,13 @@ export class InterestComponent implements OnInit {
   ];
 
   constructor(
-    private homeService: HomeService
+    private homeService: HomeService,
+    private cookieService: CookieService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.user = JSON.parse(this.cookieService.get('user'));
+  }
 
   deleteInterest(interestID) {
     this.homeService.deleteInterest(interestID).subscribe(

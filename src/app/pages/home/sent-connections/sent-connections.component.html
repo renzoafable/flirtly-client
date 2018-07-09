@@ -8,19 +8,19 @@
         <div *ngFor="let user of sent; let i = index" [class]="setCarouselClass(i)">
           <img src="../../../../assets/renzo.jpg" alt="user image" class="img-responsive">
           <div class="carousel-caption background-global">
-            <p>@{{user.connectionName}}</p>
+            <p>{{user.firstName}}</p>
             <button class="btn btn-request" (click)="deleteSentRequest(user.connectionID)" >
-              Cancel request
+              Cancel request <i class="fa fa-remove"></i>
             </button>
           </div>
         </div>
       </div>
       
-      <a href="#sent-connections" class="left carousel-control" data-slide="prev">
+      <a *ngIf="sent.length > 1" href="#sent-connections" class="left carousel-control" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a href="#sent-connections" class="right carousel-control" data-slide="next">
+      <a *ngIf="sent.length > 1" href="#sent-connections" class="right carousel-control" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right"></span>
         <span class="sr-only">Next</span>
       </a>

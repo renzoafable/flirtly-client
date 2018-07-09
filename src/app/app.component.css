@@ -3,3 +3,17 @@
   height: 100%;
   margin: .5em auto;
 }
+
+.alertTop {
+  position: fixed;
+  top: 3px;
+  margin-left: 25%;
+  width: 50%;
+  text-align: center;
+}
+
+.fullscreen {
+  width:100%; 
+  top: 0; 
+  left: 0; 
+}

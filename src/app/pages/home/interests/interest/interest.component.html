@@ -1,1 +1,4 @@
-<span [class]="styles[iter > 5 ? iter%6 : iter]">{{interest.interest}} <span class="glyphicon glyphicon-minus" (click)="deleteInterest(interest.interestID)"></span></span>
+<div [class]="styles[iter > 4 ? iter%5 : iter]">
+  {{interest.interest}} 
+  <i *ngIf="user.userID==interest.userID" class="fa fa-remove" (click)="deleteInterest(interest.interestID)"></i>
+</div>

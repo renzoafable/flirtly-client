@@ -50,9 +50,18 @@ img {
   color: #ff4d4d;
   border: 1px solid #ff4d4d;
 }
+
+.btn-cancel i {
+  color:  #ff4d4d;
+}
+
 .btn-cancel:hover{
   -webkit-transform: scale(1.1);
   background: #ff4d4d;
+  color: #fff;
+}
+
+.btn-cancel:hover i { 
   color: #fff;
 }
 

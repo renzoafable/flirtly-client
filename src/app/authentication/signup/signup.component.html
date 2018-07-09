@@ -1,145 +1,93 @@
-<div class="container-fluid signup">
-  <div class="container">
-    <div class="panel-heading">
-      <h1 class="title">Sign Up</h1>
-      <h5>Flirt freely, live freely</h5>
+<div class="container signup">
+  <div class="row">
+    <div class="col-sm-7">
+      <h1 class="signup-header signup-header-slogan text-left">
+        Browse, connect, and mingle with people around you on
+        <span class="title">flirt.ly</span>.
+      </h1>
+      <h3 class="signup-header text-left">
+        <span class="fa fa-search slogan-icon"></span> See photos and interests of different users.
+      </h3>
+      <h3 class="signup-header text-right">
+        Meet with people who shares the same interests
+        <span class="fa fa-handshake-o slogan-icon"></span>
+      </h3>
+      <h3 class="signup-header text-left">
+        <span class="fa fa-share-alt slogan-icon"></span> Explore and find out more!
+      </h3>
     </div>
-    <form action="" #signupForm="ngForm" (ngSubmit)="signup(); signupForm.reset()">
-      <div class="row">
-        <div class="col-sm-4">
-          <input  
-          class="form-control" 
-          id="firstName" 
-          type="text" 
-          name="firstName" 
-          placeholder="First name"
-          required
-          [(ngModel)]="body.firstName"
-          >
-        </div>
-        <div class="col-sm-4">
-          <input  
-          class="form-control" 
-          id="middleName" 
-          type="text" 
-          name="middleName" 
-          placeholder="Middle name"
-          [(ngModel)]="body.middleName"
-          >
-        </div>
-        <div class="col-sm-4">
-          <input  
-          class="form-control" 
-          id="lastName" 
-          type="text" 
-          name="lastName" 
-          placeholder="Last name"
-          required
-          [(ngModel)]="body.lastName"
-          >
-        </div>
+    <div class="col-sm-5 signup-form">
+      <div class="panel-heading">
+        <h1 class="title">Sign Up</h1>
+        <h5>Flirt freely, live freely!</h5>
       </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <input  
-          class="form-control" 
-          id="username@signup" 
-          type="text" 
-          name="username" 
-          placeholder="Username"
-          required
-          [(ngModel)]="body.username"
-        >
+      <form action="" #signupForm="ngForm" (ngSubmit)="signup(); signupForm.reset()">
+        <div class="row">
+          <div class="col-sm-6" [ngClass]="{'has-feedback': name.valid, 'has-success': name.valid}">
+            <input class="form-control" id="firstName" type="text" name="firstName" placeholder="First name" required [(ngModel)]="body.firstName"
+              #name="ngModel">
+            <span class="fa fa-check form-control-feedback"></span>
+          </div>
+          <div class="col-sm-6" [ngClass]="{'has-feedback': lastName.valid, 'has-success': lastName.valid}">
+            <input class="form-control" id="lastName" type="text" name="lastName" placeholder="Last name" required [(ngModel)]="body.lastName"
+              #lastName="ngModel">
+            <span class="fa fa-check form-control-feedback"></span>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <input  
-          class="form-control" 
-          id="contactNumber" 
-          type="text" 
-          name="contactNumber" 
-          placeholder="Contact number"
-          required
-          [(ngModel)]="body.contactNumber"
-        >
+        <div class="row">
+          <div class="col-sm-12" [ngClass]="{'has-feedback': username.valid, 'has-success': username.valid}">
+            <input class="form-control" id="username@signup" type="text" name="username" placeholder="Username" required [(ngModel)]="body.username"
+              #username="ngModel">
+            <span class="fa fa-check form-control-feedback"></span>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <input  
-          class="form-control" 
-          id="emailAddress" 
-          type="text" 
-          name="emailAddress" 
-          placeholder="Email address"
-          required
-          [(ngModel)]="body.emailAddress"
-        >
+        <div class="row">
+          <div class="col-sm-12" [ngClass]="{'has-feedback': contactNumber.valid, 'has-success': contactNumber.valid}">
+            <input class="form-control" id="contactNumber" type="text" name="contactNumber" placeholder="Contact number" required [(ngModel)]="body.contactNumber"
+              #contactNumber="ngModel">
+            <span class="fa fa-check form-control-feedback"></span>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <input  
-          class="form-control" 
-          id="password@signup" 
-          type="password" 
-          name="password" 
-          placeholder="Password"
-          required
-          [(ngModel)]="body.password"
-        >
+        <div class="row">
+          <div class="col-sm-12" [ngClass]="{'has-feedback': emailAddress.valid, 'has-success': emailAddress.valid}">
+            <input class="form-control" id="emailAddress" type="text" name="emailAddress" placeholder="Email address" required [(ngModel)]="body.emailAddress"
+              #emailAddress="ngModel">
+            <span class="fa fa-check form-control-feedback"></span>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <select 
-            class="form-control" 
-            id="sex"
-            name="sex"
-            required
-            [(ngModel)]="body.sex" 
-          >
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
+        <div class="row">
+          <div class="col-sm-12" [ngClass]="{'has-feedback': password.valid, 'has-success': password.valid}">
+            <input class="form-control" id="password@signup" type="password" name="password" placeholder="Password" required [(ngModel)]="body.password"
+              #password="ngModel">
+            <span class="fa fa-check form-control-feedback"></span>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <input  
-          class="form-control" 
-          id="city" 
-          type="text" 
-          name="city" 
-          placeholder="City"
-          required
-          [(ngModel)]="body.city"
-          >
+        <div class="row">
+          <div class="col-sm-12" [ngClass]="{'has-feedback': sex.valid, 'has-success': sex.valid}">
+            <select class="form-control" id="sex" name="sex" required [(ngModel)]="body.sex" #sex="ngModel">
+              <option value="" disabled selected>Select sex</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+            <span class="fa fa-check form-control-feedback"></span>
+          </div>
         </div>
-        <div class="col-sm-6">
-          <input  
-          class="form-control" 
-          id="province" 
-          type="text" 
-          name="province" 
-          placeholder="Province"
-          required
-          [(ngModel)]="body.province"
-          >
+        <div class="row">
+          <div class="col-sm-6">
+            <input class="form-control" id="city" type="text" name="city" placeholder="City" [(ngModel)]="body.city">
+          </div>
+          <div class="col-sm-6">
+            <input class="form-control" id="province" type="text" name="province" placeholder="Province" [(ngModel)]="body.province">
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <button 
-          type="submit" 
-          class="btn btn-outline-signup"
-          [disabled]="!signupForm.form.valid"
-          >
-            Sign Up
-          </button>
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-success btn-lg" [disabled]="!signupForm.form.valid">
+              Sign Up
+            </button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>

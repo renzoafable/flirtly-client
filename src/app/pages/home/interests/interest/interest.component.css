@@ -1,8 +1,10 @@
-span {
+div {
   display: inline-block;
   margin: .25em .25em;
+  padding: .50em .50em;
+  font-family: 'Comfortaa', cursive;
 }
 
-* {
-  font-family: 'Comfortaa', cursive;
+i {
+  cursor: pointer;
 }

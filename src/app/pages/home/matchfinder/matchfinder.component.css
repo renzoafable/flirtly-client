@@ -15,7 +15,7 @@ img {
   border-radius: 0;
 }
 
-.btn-request{
+.btn-request {
   background: #ff4d4d;
   box-shadow: 0 0 1px #ccc;
   -webkit-transition: all 0.2s ease-in-out;
@@ -26,6 +26,14 @@ img {
   background: white;
   color: #ff4d4d;
   border: 1px solid #ff4d4d;
+}
+
+.btn-request:hover span {
+  color: #ff4d4d;
+}
+
+.btn-request:hover i {
+  color: #ff4d4d;
 }
 
 .btn-favorite{

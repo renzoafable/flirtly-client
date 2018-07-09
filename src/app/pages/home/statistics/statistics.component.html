@@ -1,12 +1,13 @@
-<div class="media">
-  <div class="media-left media-middle">
-    <img src="../../../../assets/renzo.jpg" class="img-circle" height="100" width="100" alt="Avatar">
+<div class="panel text-center">
+  <div class="panel-heading">
+    <img src="../../../../assets/renzo.jpg" class="img-circle" height="100px" width="100px" alt="Avatar">
+    <h3>{{user.firstName}} {{user.middleName}} {{user.lastName}}</h3>
   </div>
-  <div class="media-body">
-    <h3 class="media-heading">{{user.firstName}} {{user.middleName}} {{user.lastName}}</h3>
-    <p class="stats">@{{user.username}}</p>
+  <div class="panel-body">
     <p class="stats">{{user.emailAddress}}</p>
     <p class="stats">{{user.contactNumber}}</p>
-    <p class="stats">{{user.city}}, {{user.province}}</p>
+    <p *ngIf="user.city && user.province" class="stats">{{user.city}}, {{user.province}}</p>
+    <p *ngIf="user.city && !user.province" class="stats">{{user.city}}</p>
+    <p *ngIf="!user.city && user.province" class="stats">{{user.province}}</p>
   </div>
 </div>

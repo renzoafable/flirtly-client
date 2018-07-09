@@ -4,12 +4,11 @@
       <img src="../../../../assets/renzo.jpg" alt="user image" class="img-responsive">
       <div class="carousel-caption background-global">
         <h4>{{user.firstName}} {{user.middleName}} {{user.lastName}}</h4>
-        <p>@{{user.username}}</p>
+        <app-interest *ngFor="let interest of user.interests; let i=index" [interest]="interest" [iter]="i"></app-interest>
         <p>{{user.city}}, {{user.province}}</p>
-        <div class="btn-group">
-          <button [innerHtml]="setCarouselButtonHtml(user.confirmed)" class=" btn btn-request" (click)="sendRequest(user.userID)">
-          </button>
-        </div>
+        <button ng-mouseover="onMouseEnter()" class="btn btn-request" (click)="sendRequest(user.userID)">
+          <span *ngIf="!mouseEntered">Send request <i class="fa fa-heart"></i></span>
+        </button>
       </div>
     </div>
   </div>
@@ -23,7 +22,7 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-<div [hidden]="users.length || isGettingUsers" class="alert alert-danger alert-dismissible fade in">
+<div [hidden]="users.length || isGettingUsers" class="alert alert-danger alert-dismissible fade in text-center">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong>Hey, {{userCookie.firstName}}!</strong>
   There are no more users available to flirt with.

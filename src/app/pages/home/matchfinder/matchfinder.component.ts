@@ -4,6 +4,7 @@ import { User } from '../../../models';
 import { HomeService } from '../home.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
+import { NgxAutoScroll } from 'ngx-auto-scroll';
 
 @Component({
   selector: 'app-matchfinder',
@@ -11,6 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./matchfinder.component.css']
 })
 export class MatchfinderComponent implements OnInit {
+  mouseEntered: boolean;
   isGettingUsers: boolean;
   users: User[] = [];
   userCookie = null;
@@ -27,7 +29,7 @@ export class MatchfinderComponent implements OnInit {
       requestCanlled => {
         this.homeService.getUsers().subscribe(
           result => {
-            this.users = result.users[0].filter(user => (user.confirmed === null || user.confirmed === 0) );
+            this.users = result.users.filter(user => user.confirmed === null);
           },
           err => {
             console.log(err.error);
@@ -40,7 +42,7 @@ export class MatchfinderComponent implements OnInit {
       pendingCancelled => {
         this.homeService.getUsers().subscribe(
           result => {
-            this.users = result.users[0].filter(user => (user.confirmed === null || user.confirmed === 0) );
+            this.users = result.users.filter(user => user.confirmed === null);
           },
           err => {
             console.log(err.error);
@@ -53,7 +55,7 @@ export class MatchfinderComponent implements OnInit {
       requestApproved => {
         this.homeService.getUsers().subscribe(
           result => {
-            this.users = result.users[0].filter(user => (user.confirmed === null || user.confirmed === 0) );
+            this.users = result.users.filter(user => user.confirmed === null);
           },
           err => {
             console.log(err.error);
@@ -68,7 +70,8 @@ export class MatchfinderComponent implements OnInit {
     this.isGettingUsers = true;
     this.homeService.getUsers().subscribe(
       result => {
-        this.users = result.users[0].filter(user => (user.confirmed === null || user.confirmed === 0));
+        this.users = result.users.filter(user => user.confirmed === null);
+        console.log(this.users);
         this.isGettingUsers = false;
       },
       err => {
@@ -81,24 +84,20 @@ export class MatchfinderComponent implements OnInit {
     return i == 0 ? 'item active' : 'item';
   }
 
-  setCarouselButtonHtml(confirmed) {
-    switch(confirmed) {
-      case 1:
-        return 'Remove connection';
-      default:
-        return 'Send request';
-    }
-  }
-
   sendRequest(connectionID: number) {
     this.homeService.sendRequest(connectionID).subscribe(
       result => {
-        this.users = result.users.filter(user => (user.confirmed === null || user.confirmed === 0));
+        this.users = result.users.filter(user => user.confirmed === null);
         this.homeService.announceRequest();
       },
       err => {
         console.log(err.error);
       }
     )
+  }
+
+  onMouseEnter() {
+    this.mouseEntered = !this.mouseEntered;
+    console.log(this.mouseEntered);
   }
 }

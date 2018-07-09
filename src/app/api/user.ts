@@ -4,8 +4,12 @@ export const getUsers = `http://localhost:3001/api/user`;
 export const getSentConnections = `http://localhost:3001/api/user/connection/sent`;
 export const getReceivedConnections = `http://localhost:3001/api/user/connection/received`;
 export const getUserConnections = `http://localhost:3001/api/user/connection`;
-export const requestConnection = (connectionID) => 
-  `http://localhost:3001/api/user/connection/send/${connectionID}`
+export const sendChat = connectionID => 
+  `http://localhost:3001/api/user/message/send/${connectionID}`;
+export const getChats = connectionID => 
+  `http://localhost:3001/api/user/message/chat/${connectionID}`;
+export const requestConnection = connectionID => 
+  `http://localhost:3001/api/user/connection/send/${connectionID}`;
 export const deleteSentConnections = connectionID => 
   `http://localhost:3001/api/user/connection/sent/delete/${connectionID}`;
 export const approveConnection = userID => 

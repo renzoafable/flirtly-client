@@ -1,0 +1,35 @@
+li { 
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted #B3A9A9;
+}
+/*  */
+li.left .chat-body {
+  margin-left: 60px;
+}
+/*  */
+li.right .chat-body {
+  margin-right: 60px;
+}
+
+/*  */
+li .chat-body p {
+  margin: 0;
+  color: #777777;
+}
+
+.primary-font {
+  color: #000;
+}
+
+.sender-message {
+  text-align: justify;
+  text-align-last: right;
+  width: 100%;
+}
+
+small > span {
+  color: #777777;
+  margin: 0 3px;
+}

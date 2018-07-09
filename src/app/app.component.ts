@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { SigninService } from './authentication/signin/signin.service';
 import { SignoutService } from './authentication/signout/signout.service';
 import { SessionService } from './authentication/session/session.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,9 @@ import { SessionService } from './authentication/session/session.service';
 export class AppComponent implements OnInit {
   isLoggedIn: Boolean = false;
   title = 'app';
+  showAlert: boolean = true;
+  message;
+  alertAnnouncedSubscription: Subscription;
 
   constructor(
     private signinService: SigninService,

@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, runGuardsAndResolvers: 'always' },
   { path: 'signup', component: SignupComponent, runGuardsAndResolvers: 'always' },
   { path: 'messages', component: MessagesComponent, runGuardsAndResolvers: 'always' },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/signup', pathMatch: 'full' },
 ];
 
 @NgModule({

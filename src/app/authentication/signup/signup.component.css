@@ -1,41 +1,50 @@
-.container-fluid {
-  height: 80%;
-}
-
-.signup {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  width: 35%;
-}
-
 .panel-heading {
   padding: 0 0 0 0;
 }
 
 .col-sm-4, .col-sm-12, .col-sm-6 {
-  padding: .40em .40em;
+  padding: 0 .40em;
+  margin: 3px 0;
 }
 
 .btn {
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
 }
 
-.btn-outline-signup {
+.btn-success {
+  background-color: #47d147;
+}
+
+.btn-success:hover {
+  background-color: #248f24;
+}
+
+.title {
+  margin-top: 0;
+}
+
+.signup {
+  padding: 5em 0; 
+}
+
+.signup-form {
+  padding: 3em 3em;
+  background-color: rgba(254, 240, 240, .25);
+}
+
+.signup-header {
   color: #ffe6e6;
-  background-color: transparent;
-  background-image: none;
-  border-color: #ffe6e6;
+  margin: 1.5em 0;
 }
 
-.btn-outline-signup:hover {
-  color: #902D41;
-  background-color: #ffe6e6;
-  border-color: #ffe6e6;
+.slogan-icon {
+  font-size: 40px;
+  color: rgba(254, 240, 240, .6);
+}
+
+h1.signup-header-slogan {
+  font-family: 'Caveat Bush', cursive;
+  font-size: 300%;
 }
 
 input {
@@ -43,6 +52,11 @@ input {
 }
 
 select {
+  color: rgb(146, 141, 141);
   font-size: 15px;
   border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
 }
+
+select::-ms-expand {	display: none; }

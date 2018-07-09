@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../home.service';
 import { Subscription } from 'rxjs';
+import { MessagesService } from '../../messages/messages.service';
 
 @Component({
   selector: 'app-connections',
@@ -48,7 +49,7 @@ export class ConnectionsComponent implements OnInit {
     return i == 0 ? 'item active' : 'item';
   }
 
-  navigate() {
+  sendMessage() {
     this.router.navigateByUrl('/messages');
   }
 }

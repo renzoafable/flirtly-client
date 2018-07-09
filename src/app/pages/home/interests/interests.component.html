@@ -1,11 +1,24 @@
 <div class="text-center panel">
   <div class="panel-header">
     <h4>Interests</h4>
-    <span 
-      class="glyphicon glyphicon-plus" 
-      role="button" 
-      data-toggle="collapse" 
-      data-target="#addInterest"></span>
+    <div (click)="toggleIcon()">
+      <span
+        *ngIf="!addClicked" 
+        class="fa fa-plus" 
+        role="button" 
+        data-toggle="collapse" 
+        data-target="#addInterest"
+      >
+      </span>
+      <span
+        *ngIf="addClicked" 
+        class="fa fa-minus" 
+        role="button" 
+        data-toggle="collapse" 
+        data-target="#addInterest"
+      >
+      </span>
+    </div>
   </div>
   <div id="addInterest" class="collapse">
     <form #addInterestForm="ngForm">
@@ -16,6 +29,7 @@
           class="form-control inputsm" 
           placeholder="e.g. Coding, Eating" 
           [(ngModel)]="interestsToBeAdded"
+          autocomplete="off"
           required
         >
         <div class="input-group-btn">

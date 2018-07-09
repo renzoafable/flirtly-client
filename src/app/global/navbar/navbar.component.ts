@@ -9,6 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class NavbarComponent implements OnInit {
   @Input() isLoggedIn: Boolean;
+  linkActive: boolean = false;
 
   constructor(
     private signoutService: SignoutService,
@@ -29,5 +30,9 @@ export class NavbarComponent implements OnInit {
         console.log(err.error);
       }
     );
+  }
+
+  handleNavClick(event) {
+    this.linkActive = !this.linkActive;
   }
 }

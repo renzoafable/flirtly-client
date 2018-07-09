@@ -1,0 +1,16 @@
+<li [class]="setListClass(chat.senderID)">
+  <span [class]="setChatImgClass(chat.senderID)">
+    <img [src]="setChatAvatar(chat.senderID)" alt="User Avatar" class="img-circle" />
+  </span>
+  <div class="chat-body clearfix">
+    <div [class]="setHeaderClass(chat.senderID)">
+      <strong class="primary-font">{{chat.senderName}}</strong>
+      <small [class]="setTimeClass(chat.senderID)">
+        <span class="glyphicon glyphicon-time"></span>{{chat.timeSent}}
+      </small>
+      <p>
+        {{chat.message}}
+      </p>
+    </div>
+  </div>
+</li>
