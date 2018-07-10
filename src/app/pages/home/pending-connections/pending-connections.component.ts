@@ -30,7 +30,7 @@ export class PendingConnectionsComponent implements OnInit {
   setCarouselClass(i:number) {
     return i == 0 ? 'item active' : 'item';
   }
-  
+
   approveRequest(userID) {
     this.homeService.approveRequest(userID).subscribe(
       result => {

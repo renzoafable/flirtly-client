@@ -24,7 +24,7 @@ export class MatchfinderComponent implements OnInit {
     private homeService: HomeService,
     private cookieService: CookieService,
     private router: Router
-  ) { 
+  ) {
     this.requestCancelledSubscription = this.homeService.requestCancelled$.subscribe(
       () => {
         this.homeService.getUsers().subscribe(
@@ -86,9 +86,13 @@ export class MatchfinderComponent implements OnInit {
 
   sendRequest(connectionID: number) {
     this.homeService.sendRequest(connectionID).subscribe(
-      result => {
-        this.users = result.data;
-        this.homeService.announceRequest();
+      () => {
+        this.homeService.getUsers().subscribe(
+          result => {
+            this.users = result.data;
+            this.homeService.announceRequest();
+          }
+        )
       },
       err => {
         console.log(err.error);
