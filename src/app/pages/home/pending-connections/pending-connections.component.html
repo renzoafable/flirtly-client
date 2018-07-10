@@ -8,7 +8,7 @@
           <div *ngFor="let user of pending; let i = index" [class]="setCarouselClass(i)">
             <img src="../../../../assets/renzo.jpg" alt="user image" class="img-responsive">
             <div class="carousel-caption background-global">
-              <p>@{{user.userName}}</p>
+              <p>{{user.firstName}} {{user.lastName}}</p>
               <button class="btn btn-approve" (click)="approveRequest(user.userID)" >
                 Approve <i class="fa fa-check"></i>
               </button>

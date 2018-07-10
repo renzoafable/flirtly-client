@@ -29,7 +29,7 @@ export class MatchfinderComponent implements OnInit {
       () => {
         this.homeService.getUsers().subscribe(
           result => {
-            this.users = result.data.filter(user => user.confirmed === null);
+            this.users = result.data;
           },
           err => {
             console.log(err.error);
@@ -42,7 +42,7 @@ export class MatchfinderComponent implements OnInit {
       () => {
         this.homeService.getUsers().subscribe(
           result => {
-            this.users = result.data.filter(user => user.confirmed === null);
+            this.users = result.data;
           },
           err => {
             console.log(err.error);
@@ -55,7 +55,7 @@ export class MatchfinderComponent implements OnInit {
       () => {
         this.homeService.getUsers().subscribe(
           result => {
-            this.users = result.data.filter(user => user.confirmed === null);
+            this.users = result.data;
           },
           err => {
             console.log(err.error);
@@ -70,7 +70,7 @@ export class MatchfinderComponent implements OnInit {
     this.isGettingUsers = true;
     this.homeService.getUsers().subscribe(
       result => {
-        this.users = result.data.filter(user => user.confirmed === null);
+        this.users = result.data;
         console.log(this.users);
         this.isGettingUsers = false;
       },
@@ -87,7 +87,7 @@ export class MatchfinderComponent implements OnInit {
   sendRequest(connectionID: number) {
     this.homeService.sendRequest(connectionID).subscribe(
       result => {
-        this.users = result.data.filter(user => user.confirmed === null);
+        this.users = result.data;
         this.homeService.announceRequest();
       },
       err => {
