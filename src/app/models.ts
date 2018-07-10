@@ -1,9 +1,3 @@
-export interface SessionResponse {
-  status: number,
-  message: string,
-  session: Object
-}
-
 export interface User {
   userID: number;
   username: string;
@@ -36,25 +30,13 @@ export interface SignupForm {
   province: string;
 }
 
-export interface SignupFormResponse {
-  status: number;
-  message: string;
-  user: Object;
-}
-
 export interface Interest {
   interestID: number;
   interest: string;
 }
 
-export interface InterestResponse {
+export interface Response {
   status: number;
   message: string;
-  data: Interest[];
-}
-
-export interface UserResponse {
-  status: number;
-  message: string;
-  users: any[];
+  data;
 }

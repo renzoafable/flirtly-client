@@ -29,7 +29,7 @@ export class MessagesComponent implements OnInit {
     this.user = JSON.parse(this.cookieService.get('user'));
     this.homeService.getUserConnections().subscribe(
       result => {
-        this.connections = result.connections;
+        this.connections = result.data;
         if (this.connections[0]) {
           this.messageService.getChats(this.connections[0].connectionID).subscribe(
             result => {

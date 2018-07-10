@@ -30,7 +30,7 @@ export class SigninComponent implements OnInit {
       result => {
         this.validCredentials = true;
         this.signinService.announceSignIn(this.validCredentials);
-        this.cookieService.set('user', JSON.stringify(result.session));
+        this.cookieService.set('user', JSON.stringify(result.data));
       },
       err => {
         this.validCredentials = false;

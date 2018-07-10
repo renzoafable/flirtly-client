@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { signUp } from '../../api/auth';
-import { SignupFormResponse } from '../../models';
+import { Response } from '../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +35,6 @@ export class SignupService {
       province
     }
 
-    return this.http.post<SignupFormResponse>(signUp, body, { withCredentials: true });
+    return this.http.post<Response>(signUp, body, { withCredentials: true });
   }
 }

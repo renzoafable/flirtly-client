@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SessionResponse } from '../../models';
+import { Response } from '../../models';
 import { signIn } from '../../api/auth';
 import { Subject } from 'rxjs';
 
@@ -25,6 +25,6 @@ export class SigninService {
   signIn({username, password}) {
     const body = { username, password };
 
-    return this.http.post<SessionResponse>(signIn, body, {withCredentials: true});
+    return this.http.post<Response>(signIn, body, {withCredentials: true});
   }
 }

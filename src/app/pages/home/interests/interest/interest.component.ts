@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Interest } from '../../../../models';
 import { HomeService } from '../../home.service';
 import { CookieService } from 'ngx-cookie-service';
 

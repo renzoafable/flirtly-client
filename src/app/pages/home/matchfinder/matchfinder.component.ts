@@ -26,10 +26,10 @@ export class MatchfinderComponent implements OnInit {
     private router: Router
   ) { 
     this.requestCancelledSubscription = this.homeService.requestCancelled$.subscribe(
-      requestCanlled => {
+      () => {
         this.homeService.getUsers().subscribe(
           result => {
-            this.users = result.users.filter(user => user.confirmed === null);
+            this.users = result.data.filter(user => user.confirmed === null);
           },
           err => {
             console.log(err.error);
@@ -39,10 +39,10 @@ export class MatchfinderComponent implements OnInit {
     );
 
     this.pendingCancelledSubscription = this.homeService.pendingCancelled$.subscribe(
-      pendingCancelled => {
+      () => {
         this.homeService.getUsers().subscribe(
           result => {
-            this.users = result.users.filter(user => user.confirmed === null);
+            this.users = result.data.filter(user => user.confirmed === null);
           },
           err => {
             console.log(err.error);
@@ -52,10 +52,10 @@ export class MatchfinderComponent implements OnInit {
     );
 
     this.requestApprovedSubscription = this.homeService.requestApproved$.subscribe(
-      requestApproved => {
+      () => {
         this.homeService.getUsers().subscribe(
           result => {
-            this.users = result.users.filter(user => user.confirmed === null);
+            this.users = result.data.filter(user => user.confirmed === null);
           },
           err => {
             console.log(err.error);
@@ -70,7 +70,7 @@ export class MatchfinderComponent implements OnInit {
     this.isGettingUsers = true;
     this.homeService.getUsers().subscribe(
       result => {
-        this.users = result.users.filter(user => user.confirmed === null);
+        this.users = result.data.filter(user => user.confirmed === null);
         console.log(this.users);
         this.isGettingUsers = false;
       },
@@ -87,7 +87,7 @@ export class MatchfinderComponent implements OnInit {
   sendRequest(connectionID: number) {
     this.homeService.sendRequest(connectionID).subscribe(
       result => {
-        this.users = result.users.filter(user => user.confirmed === null);
+        this.users = result.data.filter(user => user.confirmed === null);
         this.homeService.announceRequest();
       },
       err => {

@@ -19,7 +19,7 @@ export class InterestsComponent implements OnInit {
     private homeService: HomeService
   ) { 
     this.interestDeletedSubscription = this.homeService.interesDeleted$.subscribe(
-      interestDeleted => {
+      () => {
         this.homeService.getUserInterests().subscribe(
           result => {
             this.interests = result.data;
@@ -49,14 +49,9 @@ export class InterestsComponent implements OnInit {
     this.addClicked = !this.addClicked;
   }
 
-  setInterests(interests) {
-    const newInterests = [...this.interests, ...interests];
-    this.interests = newInterests;
-  }
-
   addInterests() {
     this.homeService.addInterest(this.interestsToBeAdded).subscribe(
-      result => {
+      () => {
         this.homeService.getUserInterests().subscribe(
           result => {
             this.interests = result.data;

@@ -46,8 +46,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.sessionService.getSession().subscribe(session => {
-      if (session.session) {
-        this.cookieService.set('user', JSON.stringify(session.session), 24);
+      if (session.data) {
+        this.cookieService.set('user', JSON.stringify(session.data), 24);
         this.isLoggedIn = true;
       }
     });

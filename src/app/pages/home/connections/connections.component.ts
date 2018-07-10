@@ -22,7 +22,7 @@ export class ConnectionsComponent implements OnInit {
       requestApproved => {
         this.homeService.getUserConnections().subscribe(
           result => {
-            this.connections = result.connections;
+            this.connections = result.data;
           },
           err => {
             console.log(err.error);
@@ -36,7 +36,7 @@ export class ConnectionsComponent implements OnInit {
     this.isGettingConnections = true;
     this.homeService.getUserConnections().subscribe(
       result => {
-        this.connections = result.connections;
+        this.connections = result.data;
         this.isGettingConnections = false;
       },
       err => {

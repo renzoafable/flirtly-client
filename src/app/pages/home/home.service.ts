@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
-import { InterestResponse, UserResponse } from '../../models';
+import { Response } from '../../models';
 import { getUserInterests, addInterests, getUsers, requestConnection, getSentConnections, deleteSentConnections, getReceivedConnections, approveConnection, deleteReceivedConnection, getUserConnections, deleteInterest } from '../../api/user';
 import { Subject } from 'rxjs';
 
@@ -58,11 +58,11 @@ export class HomeService {
 
   // API CALLS
   getUserInterests() {
-    return this.http.get<InterestResponse>(getUserInterests, {withCredentials: true});
+    return this.http.get<Response>(getUserInterests, {withCredentials: true});
   }
 
   addInterest(interests) {
-    return this.http.post<InterestResponse>(addInterests, {interests}, {withCredentials: true});
+    return this.http.post<Response>(addInterests, {interests}, {withCredentials: true});
   }
 
   deleteInterest(interestID) {
@@ -70,11 +70,11 @@ export class HomeService {
   }
 
   getUsers() {
-    return this.http.get<UserResponse>(getUsers, {withCredentials: true});
+    return this.http.get<Response>(getUsers, {withCredentials: true});
   }
 
   sendRequest(connectionID) {
-    return this.http.post<UserResponse>(requestConnection(connectionID), {}, {withCredentials: true});
+    return this.http.post<Response>(requestConnection(connectionID), {}, {withCredentials: true});
   }
 
   getSentConnections() {

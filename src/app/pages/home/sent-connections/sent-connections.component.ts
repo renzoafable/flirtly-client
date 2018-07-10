@@ -16,10 +16,10 @@ export class SentConnectionsComponent implements OnInit {
     private homeService: HomeService
   ) { 
     this.requestAnnouncedSubscription = homeService.requestAnnounced$.subscribe(
-      requestAnnounced => {
+      () => {
         this.homeService.getSentConnections().subscribe(
           result => {
-            this.sent = result.sentRequests;
+            this.sent = result.data;
           },
           err => {
             console.log(err.error)
@@ -33,7 +33,7 @@ export class SentConnectionsComponent implements OnInit {
     this.isGettingSentConnections = true;
     this.homeService.getSentConnections().subscribe(
       result => {
-        this.sent = result.sentRequests;
+        this.sent = result.data;
         this.isGettingSentConnections = false
       },
       err => {

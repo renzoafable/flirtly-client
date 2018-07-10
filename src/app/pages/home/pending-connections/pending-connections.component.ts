@@ -18,7 +18,7 @@ export class PendingConnectionsComponent implements OnInit {
     this.isGettingPendingConnections = true;
     this.homeService.getReceivedConnections().subscribe(
       result => {
-        this.pending = result.receivedConnections;
+        this.pending = result.data;
         this.isGettingPendingConnections = false
       },
       err => {

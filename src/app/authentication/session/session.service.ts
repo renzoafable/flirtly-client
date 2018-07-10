@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { getSession } from '../../api/auth';
-import { SessionResponse } from '../../models';
+import { Response } from '../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,6 @@ export class SessionService {
     const httpOptions = {
       headers: headers
     };
-    return this.httpClient.post<SessionResponse>(getSession, {}, { withCredentials: true });
+    return this.httpClient.post<Response>(getSession, {}, { withCredentials: true });
   }
 }
