@@ -71,7 +71,6 @@ export class MatchfinderComponent implements OnInit {
     this.homeService.getUsers().subscribe(
       result => {
         this.users = result.data;
-        console.log(this.users);
         this.isGettingUsers = false;
       },
       err => {
