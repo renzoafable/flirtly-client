@@ -3,6 +3,7 @@ import { HomeService } from '../home/home.service';
 import { MessagesService } from './messages.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
+import { WebsocketService } from './websocket.service';
 
 @Component({
   selector: 'app-messages',
@@ -19,10 +20,13 @@ export class MessagesComponent implements OnInit {
   gluedToBottom: boolean = true;
   sendMessageSubscription: Subscription;
 
+  ioConnection: any;
+
   constructor(
     private homeService: HomeService,
     private messageService: MessagesService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private socketService: WebsocketService
   ) { }
 
   ngOnInit() {
@@ -49,12 +53,16 @@ export class MessagesComponent implements OnInit {
         console.log(err.error);
       }
     );
+
+    this.socketService.onEvent('message').subscribe(result => {
+      console.log(result);
+    });
   }
 
   setPlaceHolder(firstName, lastName, chatColor) {
     firstName = [...firstName][0];
     lastName = [...lastName][0];
-    return `http://placehold.it/35/${chatColor}/fff&text=${firstName+lastName}`;
+    return `http://placehold.it/35/${chatColor}/fff&text=${firstName + lastName}`;
   }
 
   openMessage(connectionID, chatColor) {
@@ -74,20 +82,26 @@ export class MessagesComponent implements OnInit {
   }
 
   sendChat() {
+    const self = this;
     this.messageService.sendChat(this.activeContact, this.message).subscribe(
       () => {
-        this.messageService.getChats(this.activeContact).subscribe(
-          result => {
-            result.data.map(chat => {
-              chat.chatColor = this.activeChatColor;
-            });
-            this.chats = result.data;
-          },
-          err => {
-            console.log(err.error);
-          }
-        )
+        // this.messageService.getChats(this.activeContact).subscribe(
+        //   result => {
+        //     result.data.map(chat => {
+        //       chat.chatColor = this.activeChatColor;
+        //     });
+        //     this.chats = result.data;
+        //   },
+        //   err => {
+        //     console.log(err.error);
+        //   }
+        // )
+        this.socketService.sendMessage(self.message);
       }
     )
+  }
+
+  sendMessage() {
+    this.socketService.sendMessage('hello');
   }
 }
