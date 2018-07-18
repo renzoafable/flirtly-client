@@ -5,6 +5,7 @@ import { HomeService } from '../home.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { NgxAutoScroll } from 'ngx-auto-scroll';
+import { WebsocketService } from '../../../websocket.service';
 
 @Component({
   selector: 'app-matchfinder',
@@ -15,7 +16,7 @@ export class MatchfinderComponent implements OnInit {
   mouseEntered: boolean;
   isGettingUsers: boolean;
   users: User[] = [];
-  userCookie = null;
+  user: User;
   requestApprovedSubscription: Subscription;
   requestCancelledSubscription: Subscription;
   pendingCancelledSubscription: Subscription;
@@ -23,7 +24,8 @@ export class MatchfinderComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private cookieService: CookieService,
-    private router: Router
+    private router: Router,
+    private socketService: WebsocketService
   ) {
     this.requestCancelledSubscription = this.homeService.requestCancelled$.subscribe(
       () => {
@@ -66,7 +68,7 @@ export class MatchfinderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userCookie = JSON.parse(this.cookieService.get('user'));
+    this.user = JSON.parse(this.cookieService.get('user'));
     this.isGettingUsers = true;
     this.homeService.getUsers().subscribe(
       result => {
@@ -79,13 +81,23 @@ export class MatchfinderComponent implements OnInit {
     )
   }
 
-  setCarouselClass(i:number) {
+  setCarouselClass(i: number) {
     return i == 0 ? 'item active' : 'item';
   }
 
-  sendRequest(connectionID: number) {
+  sendRequest(connectionID: number, firstName: string, lastName: string) {
+    const requestBody = {
+      connectionID,
+      connectionFirstName: firstName,
+      connectionLastName: lastName,
+      userID: this.user.userID,
+      userFirstName: this.user.firstName,
+      userLastName: this.user.lastName
+    }
+
     this.homeService.sendRequest(connectionID).subscribe(
       () => {
+        this.socketService.sendRequest(requestBody);
         this.homeService.getUsers().subscribe(
           result => {
             this.users = result.data;
@@ -97,10 +109,5 @@ export class MatchfinderComponent implements OnInit {
         console.log(err.error);
       }
     )
-  }
-
-  onMouseEnter() {
-    this.mouseEntered = !this.mouseEntered;
-    console.log(this.mouseEntered);
   }
 }

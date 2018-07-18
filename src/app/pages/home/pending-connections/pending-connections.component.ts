@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home.service';
+import { WebsocketService } from '../../../websocket.service';
+import { CookieService } from '../../../../../node_modules/ngx-cookie-service';
+import { User } from '../../../models';
 
 @Component({
   selector: 'app-pending-connections',
@@ -9,12 +12,16 @@ import { HomeService } from '../home.service';
 export class PendingConnectionsComponent implements OnInit {
   isGettingPendingConnections: boolean;
   pending = [];
+  user: User;
 
   constructor(
-    private homeService: HomeService
+    private homeService: HomeService,
+    private socketService: WebsocketService,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit() {
+    this.user = JSON.parse(this.cookieService.get('user'));
     this.isGettingPendingConnections = true;
     this.homeService.getReceivedConnections().subscribe(
       result => {
@@ -24,7 +31,15 @@ export class PendingConnectionsComponent implements OnInit {
       err => {
         console.log(err.error);
       }
-    )
+    );
+
+    this.socketService.onEvent(`receiveSentRequest/${this.user.userID}`).subscribe(result => {
+      this.pending.push(result);
+    });
+
+    this.socketService.onEvent(`receiveCancelledRequest/${this.user.userID}`).subscribe(result => {
+      this.pending = this.pending.filter(request => request.userID !== result.userID);
+    });
   }
 
   setCarouselClass(i:number) {

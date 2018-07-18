@@ -3,7 +3,7 @@ import { HomeService } from '../home/home.service';
 import { MessagesService } from './messages.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
-import { WebsocketService } from './websocket.service';
+import { WebsocketService } from '../../websocket.service';
 import * as moment from 'moment';
 import { User, ActiveContact } from '../../models';
 
@@ -18,11 +18,8 @@ export class MessagesComponent implements OnInit {
   chats = [];
   activeContact: ActiveContact;
   message = '';
-  activeChatColor;
   gluedToBottom: boolean = true;
   sendMessageSubscription: Subscription;
-
-  ioConnection: any;
 
   constructor(
     private homeService: HomeService,

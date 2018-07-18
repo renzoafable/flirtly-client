@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io'
-import { Observable } from '../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,14 @@ export class WebsocketService {
 
   sendMessage(message) {
     this.socket.emit('message', message);
+  }
+
+  sendRequest(request) {
+    this.socket.emit('sendRequest', request);
+  }
+
+  cancelRequest(request) {
+    this.socket.emit('cancelRequest', request);
   }
 
   onEvent(event): Observable<any> {

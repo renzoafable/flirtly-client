@@ -6,7 +6,7 @@
         <h4>{{user.firstName}} {{user.middleName}} {{user.lastName}}</h4>
         <app-interest *ngFor="let interest of user.interests; let i=index" [interest]="interest" [iter]="i"></app-interest>
         <p>{{user.city}}, {{user.province}}</p>
-        <button ng-mouseover="onMouseEnter()" class="btn btn-request" (click)="sendRequest(user.userID)">
+        <button class="btn btn-request" (click)="sendRequest(user.userID, user.firstName, user.lastName)">
           <span *ngIf="!mouseEntered">Send request <i class="fa fa-heart"></i></span>
         </button>
       </div>
@@ -24,7 +24,7 @@
 </div>
 <div [hidden]="users.length || isGettingUsers" class="alert alert-danger alert-dismissible fade in text-center">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Hey, {{userCookie.firstName}}!</strong>
+  <strong>Hey, {{user.firstName}}!</strong>
   There are no more users available to flirt with.
 </div>
 <div *ngIf="isGettingUsers" class="alert alert-primary fade in text-center">
