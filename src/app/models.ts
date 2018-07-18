@@ -40,3 +40,8 @@ export interface Response {
   message: string;
   data;
 }
+
+export interface ActiveContact {
+  connectionID: number;
+  connectionName: string;
+}

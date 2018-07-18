@@ -35,6 +35,6 @@ export class MessageComponent implements OnInit {
   setChatAvatar(senderID) {
     return this.user.userID === senderID ?
     'http://placehold.it/50/FA6F57/fff&text=ME' : 
-    `http://placehold.it/50/${this.chat.chatColor}/fff&text=${[...this.chat.senderName][0]}`;
+    `http://placehold.it/50/00ff00/fff&text=${[...this.chat.senderName][0]}`;
   }
 }

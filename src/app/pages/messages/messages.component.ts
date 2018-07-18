@@ -4,6 +4,8 @@ import { MessagesService } from './messages.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { WebsocketService } from './websocket.service';
+import * as moment from 'moment';
+import { User, ActiveContact } from '../../models';
 
 @Component({
   selector: 'app-messages',
@@ -11,10 +13,10 @@ import { WebsocketService } from './websocket.service';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-  user;
+  user: User;
   connections = [];
   chats = [];
-  activeContact;
+  activeContact: ActiveContact;
   message = '';
   activeChatColor;
   gluedToBottom: boolean = true;
@@ -35,13 +37,13 @@ export class MessagesComponent implements OnInit {
       result => {
         this.connections = result.data;
         if (this.connections[0]) {
+          this.activeContact = {
+            connectionID: this.connections[0].connectionID,
+            connectionName: this.connections[0].firstName
+          }
           this.messageService.getChats(this.connections[0].connectionID).subscribe(
             result => {
-              result.data.map(chat => {
-                chat.chatColor = this.connections[0].chatColor;
-              })
               this.chats = result.data;
-              this.activeContact = this.connections[0].connectionID
             },
             err => {
               console.log(err.error);
@@ -54,25 +56,24 @@ export class MessagesComponent implements OnInit {
       }
     );
 
-    this.socketService.onEvent('message').subscribe(result => {
-      console.log(result);
-    });
+    this.socketService.onEvent(`message/${this.user.userID}`).subscribe(result => {
+      this.chats.push(result);
+    })
   }
 
-  setPlaceHolder(firstName, lastName, chatColor) {
+  setPlaceHolder(firstName, lastName) {
     firstName = [...firstName][0];
     lastName = [...lastName][0];
-    return `http://placehold.it/35/${chatColor}/fff&text=${firstName + lastName}`;
+    return `http://placehold.it/35/00ff00/fff&text=${firstName + lastName}`;
   }
 
-  openMessage(connectionID, chatColor) {
-    this.activeContact = connectionID;
-    this.activeChatColor = chatColor;
+  openMessage(connectionID, firstName) {
+    this.activeContact = {
+      connectionID,
+      connectionName: firstName
+    };
     this.messageService.getChats(connectionID).subscribe(
       result => {
-        result.data.map(chat => {
-          chat.chatColor = chatColor;
-        });
         this.chats = result.data;
       },
       err => {
@@ -82,26 +83,20 @@ export class MessagesComponent implements OnInit {
   }
 
   sendChat() {
-    const self = this;
-    this.messageService.sendChat(this.activeContact, this.message).subscribe(
+    const { message } = this;
+    const messageBody = {
+      message: message,
+      receiverID: this.activeContact.connectionID,
+      receiverName: this.activeContact.connectionName,
+      senderID: this.user.userID,
+      senderName: this.user.firstName,
+      timeSent: Date.now()
+    }
+    this.messageService.sendChat(this.activeContact.connectionID, this.message).subscribe(
       () => {
-        // this.messageService.getChats(this.activeContact).subscribe(
-        //   result => {
-        //     result.data.map(chat => {
-        //       chat.chatColor = this.activeChatColor;
-        //     });
-        //     this.chats = result.data;
-        //   },
-        //   err => {
-        //     console.log(err.error);
-        //   }
-        // )
-        this.socketService.sendMessage(self.message);
+        this.socketService.sendMessage(messageBody);
+        this.chats.push(messageBody);
       }
     )
-  }
-
-  sendMessage() {
-    this.socketService.sendMessage('hello');
   }
 }
