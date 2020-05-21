@@ -19,3 +19,6 @@ A web-based dating application.
 - [Yarn](https://classic.yarnpkg.com/en/) - Dependency Management
 - [Bootstrap](https://getbootstrap.com/docs/3.3/) - The frontend framework used.
 - [SocketIO](https://socket.io/) - Web Sockets
+
+## Server
+The source code of the server can be found [here](https://github.com/renzoafable/flirtly-api).
